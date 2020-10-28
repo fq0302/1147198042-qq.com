@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="/vue.js"></script>
+<style>
+    #app .ta:nth-child(odd) {
+        background-color: rgb(89, 250, 169);
+    }
+
+    .ta {
+        border: 1px solid black;
+        background-color: pink;
+    }
+
+    .ta:hover {
+        background-color: rgb(107, 24, 240);
+    }
+
+    input {
+        width: 50px;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <tr>
+            <th>序号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>手机号</th>
+            <th>操作</th>
+        </tr>
+        <teble v-for='item in fq' :key='item.id' class="ta">
+            <br>
+            <tr id="hang">
+                <th>{{item.id}}</th>
+                <th>{{item.name}}</th>
+                <th>{{item.sex}}</th>
+                <th>{{item.age}}</th>
+                <th>{{item.ip}}</th>
+                <th>
+                    <button>编辑</button>
+                    <button @click="rem">删除</button>
+                </th>
+            </tr>
+        </teble>
+        <div>
+            <input type="text" v-model='nid'>
+            <input type="text" v-model='nname'>
+            <input type="text" v-model='nsex'>
+            <input type="text" v-model='nage'>
+            <input type="text" v-model='nip'>
+            <button @click='add'>添加</button>
+        </div>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                fq: [
+                    {
+                        id: 1,
+                        name: '张三',
+                        sex: '男',
+                        age: '18',
+                        ip: '12345678946'
+                    },
+                    {
+                        id: 2,
+                        name: '李四',
+                        sex: '男',
+                        age: '18',
+                        ip: '12345678946'
+                    },
+                    {
+                        id: 3,
+                        name: '王五',
+                        sex: '女',
+                        age: '18',
+                        ip: '12345678946'
+                    },
+                    {
+                        id: 4,
+                        name: '赵六',
+                        sex: '男',
+                        age: '18',
+                        ip: '12345678946'
+                    },
+                    {
+                        id: 5,
+                        name: '邓七',
+                        sex: '女',
+                        age: '21',
+                        ip: '12345678946'
+                    }
+                ],
+                adds: {
+                    id: '',
+                    name: '',
+                    sex: '',
+                    age: '',
+                    ip: ''
+                }
+            }
+        },
+        methods: {
+            rem(ind) {
+                this.fq.splice(ind, 1)
+            },
+            add() {
+                var mys = { id: '', name: '', sex: '', age: '', ip: '' }
+                this.fq.push({ mys })
+                this.id = '',
+                this.name = '',
+                this.sex = '',
+                this.age = '',
+                this.ip = ''
+            }
+        }
+    })
+</script>
+
+</html>
